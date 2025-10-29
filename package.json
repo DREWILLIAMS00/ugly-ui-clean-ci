@@ -1,0 +1,10 @@
+{
+  "name": "ugly-ui-site",
+  "version": "1.0.0",
+  "scripts": {
+    "lint": "eslint js/app.js"
+  },
+  "devDependencies": {
+    "eslint": "^8.0.0"
+  }
+}
