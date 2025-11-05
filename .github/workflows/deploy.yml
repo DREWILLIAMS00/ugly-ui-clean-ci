@@ -15,9 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/configure-pages@v3
-
       # Create dist folder and copy only the static site files
       - name: Prepare dist
         run: |
@@ -25,26 +23,20 @@ jobs:
           cp index.html dist/ || true
           cp styles.css dist/ || true
           cp -r js dist/ || true
-
-      # Upload artifact using v4
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
+      # Upload the 'dist' directory as a GitHub Pages artifact
+      - uses: actions/upload-pages-artifact@v2
         with:
-          name: github-pages
           path: dist
 
   deploy:
     needs: build
     runs-on: ubuntu-latest
-    permissions:
-      pages: write
-      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deploy.outputs.page_url }}
+    permissions:
+      pages: write
+      id-token: write
     steps:
-      - name: Deploy to GitHub Pages
-        id: deploy
-        uses: actions/deploy-pages@v4
-        with:
-          artifact_name: github-pages
+      - id: deploy
+        uses: actions/deploy-pages@v2
