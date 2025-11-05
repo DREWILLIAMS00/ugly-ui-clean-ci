@@ -68,9 +68,10 @@ jobs:
       - name: Build site
         run: npm run build || true
 
-      - name: Upload static site artifact
-        uses: actions/upload-pages-artifact@v2
+      - name: Upload artifact for GitHub Pages
+        uses: actions/upload-artifact@v4
         with:
+          name: github-pages
           path: dist
 
   deploy:
@@ -78,8 +79,10 @@ jobs:
     needs: build
     environment:
       name: github-pages
-      url: ${{ steps.deploy.outputs.page_url }}
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Deploy to GitHub Pages
-        id: deploy
+        id: deployment
         uses: actions/deploy-pages@v2
+        with:
+          artifact_name: github-pages
