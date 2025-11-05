@@ -15,18 +15,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/configure-pages@v3
+
+      # Create dist folder and copy only the static site files
       - name: Prepare dist
         run: |
           mkdir -p dist
           cp index.html dist/ || true
           cp styles.css dist/ || true
           cp -r js dist/ || true
+
+      # Upload artifact using v4
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: github-pages
           path: dist
+
   deploy:
     needs: build
     runs-on: ubuntu-latest
