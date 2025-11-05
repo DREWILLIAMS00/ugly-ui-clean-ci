@@ -28,9 +28,8 @@ The workflow runs ESLint before the build step. If you remove a required semicol
 After enabling GitHub Pages with the "GitHub Actions" source, the site will be available at:
 
 ```
-https://<username>.github.io/ugly-ui-clean-ci/
+https://drewilliams00.github.io/ugly-ui-clean-ci
 ```
-Replace `<username>` with your actual GitHub username.
 
 ## LLM Prompts
 
